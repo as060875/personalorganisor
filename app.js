@@ -13,7 +13,7 @@ const { IPinfoWrapper } = require("node-ipinfo");
 const { stringify } = require('querystring');
 const { json } = require('body-parser');
 const { response } = require('express');
-const ipinfo = new IPinfoWrapper("313c67a3309026");
+const ipinfo = new IPinfoWrapper(process.env.KEY1);
 const PORT = process.env.PORT || 3000;
 
 //const JSON= require('JSON');
@@ -204,7 +204,7 @@ if(cname==="")
     cname="us";
 }
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('b133ef5d918b4b5facb7701cdfcbf347');
+const newsapi = new NewsAPI(process.env.KEY2);
 // To query /v2/top-headlines
 // All options passed to topHeadlines are optional, but you need to include at least one of them
 
@@ -226,7 +226,7 @@ app.get("/bnews", function (req, res) {
         cname="us";
     }
     const NewsAPI = require('newsapi');
-    const newsapi = new NewsAPI('b133ef5d918b4b5facb7701cdfcbf347');
+    const newsapi = new NewsAPI(process.env.KEY2);
     // To query /v2/top-headlines
     // All options passed to topHeadlines are optional, but you need to include at least one of them
     newsapi.v2.topHeadlines({'category': 'business','country':cname}).then(response => {
@@ -247,7 +247,7 @@ app.get("/tnews", function (req, res) {
         cname="us";
     }
     const NewsAPI = require('newsapi');
-    const newsapi = new NewsAPI('b133ef5d918b4b5facb7701cdfcbf347');
+    const newsapi = new NewsAPI(process.env.KEY2);
     // To query /v2/top-headlines
     // All options passed to topHeadlines are optional, but you need to include at least one of them
      newsapi.v2.topHeadlines({'category': 'technology','country':cname}).then(response => {
