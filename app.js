@@ -14,6 +14,8 @@ const { stringify } = require('querystring');
 const { json } = require('body-parser');
 const { response } = require('express');
 const ipinfo = new IPinfoWrapper("313c67a3309026");
+const PORT = process.env.PORT || 3000;
+
 //const JSON= require('JSON');
 var ipaddress=""
 var country="";
@@ -259,6 +261,6 @@ app.get("/tnews", function (req, res) {
       });
 });
 
-app.listen(3000, function(){
+app.listen(PORT, function(){
     console.log("Server initiated at 3000");
 })
