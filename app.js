@@ -15,16 +15,21 @@ const { json } = require('body-parser');
 const { response } = require('express');
 const ipinfo = new IPinfoWrapper(process.env.KEY1);
 const PORT = process.env.PORT || 3000;
-
 //const JSON= require('JSON');
 var ipaddress=""
 var country="";
 var city="";
 var cname="";
 
-const requestListener = function (req, res) {
-    ipaddress=req.socket.localAddress;
-};
+// const requestListener = function (req, res) {
+//     ipaddress=req.socket.localAddress;
+// };
+
+ app.get('/', function (req, res) {
+    ipaddress = req.socket.remoteAddress;
+    res.render("login");
+});
+
 
 ipinfo.lookupIp(ipaddress).then((response) => {
     country=response.country;
@@ -77,10 +82,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 const Item = mongooseB.model("Item",todolistSchema);
-
-app.get('/', function (req, res) {
-    res.render("login");
-    });
 
 
 app.get('/login', function (req, res) {
