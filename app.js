@@ -15,18 +15,23 @@ const { json } = require('body-parser');
 const { response } = require('express');
 const ipinfo = new IPinfoWrapper(process.env.KEY1);
 const PORT = process.env.PORT || 3000;
+const requestIp = require('request-ip');
 //const JSON= require('JSON');
 var ipaddress=""
 var country="";
 var city="";
 var cname="";
 
+
 // const requestListener = function (req, res) {
 //     ipaddress=req.socket.localAddress;
 // };
+const ipMiddleware = function(req, res) {
+    const ipaddress = requestIp.getClientIp(req); 
+};
 
  app.get('/', function (req, res) {
-    ipaddress = req.socket.remoteAddress;
+ //   ipaddress = req.socket.remoteAddress;
     res.render("login");
 });
 
